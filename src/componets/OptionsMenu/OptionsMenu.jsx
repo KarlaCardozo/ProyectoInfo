@@ -11,8 +11,8 @@ import Comidas from "../../assets/Cenas";
 import Cenas from "../../assets/Comidas";
 import Bebidas from "../../assets/Bebidas";
 import Postres from "../../assets/Postres";
-import axios from "axios";
 import NavBar from "../NavBar/Navbar";
+import axios from "axios";
 
 const images = [
   {
