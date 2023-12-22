@@ -15,10 +15,29 @@ import {
   ObtText,
   Label_Title,
 } from "./menucomida.style";
+import EnsaladaCesar from "../../assets/menus/EnsaladaCesar";
+import PastaAlfredo from "../../assets/menus/PastaAlfredo";
+
+const images = [
+  {
+    id: 1,
+    title: "Ensalada César",
+    imageUrl: <EnsaladaCesar width="100%" height="100%" />,
+  },
+  {
+    id: 1,
+    title: "Pasta Alfredo",
+    imageUrl: <PastaAlfredo width="100%" height="100%" />,
+  },
+];
+
+const getCategoryImage = (category) => {
+  const image = images.find((img) => img.title === category);
+  return image ? image.imageUrl : null;
+};
 
 const MenuComida = ({ addToCart }) => {
   const [platillo, setPlatillo] = useState([]);
-  const [carrito, setCarrito] = useState([]);
   const [cantidadSeleccionada, setCantidadSeleccionada] = useState(0);
   const [observaciones, setObservaciones] = useState("");
 
@@ -38,8 +57,6 @@ const MenuComida = ({ addToCart }) => {
     fetchData();
   }, []);
 
- 
-
   return (
     <Menu_Container>
       <NavBar />
@@ -47,6 +64,7 @@ const MenuComida = ({ addToCart }) => {
       {platillo.map((item) => (
         <ContainerCard key={item.id}>
           <ContainerMenu>
+            {getCategoryImage(item.nombre_platillo)}
             <Container_Nombre_Precio>
               <Label_Nombre>{item.nombre_platillo}</Label_Nombre>
               <Label_Precio>{item.precio}</Label_Precio>
@@ -67,13 +85,7 @@ const MenuComida = ({ addToCart }) => {
             }}
           />
           <ButtonAdd
-            onClick={() =>
-              addToCart(
-                item,
-                cantidadSeleccionada,
-                observaciones
-              )
-            }
+            onClick={() => addToCart(item, cantidadSeleccionada, observaciones)}
           >
             Agregar
           </ButtonAdd>

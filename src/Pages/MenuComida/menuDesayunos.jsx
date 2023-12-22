@@ -15,6 +15,26 @@ import {
   ObtText,
   Label_Title,
 } from "./menucomida.style";
+import EnsaladaCesar from "../../assets/menus/EnsaladaCesar";
+import PastaAlfredo from "../../assets/menus/PastaAlfredo";
+
+const images = [
+  {
+    id: 1,
+    title: "Ensalada César",
+    imageUrl: <EnsaladaCesar width="100%" height="100%" />,
+  },
+  {
+    id: 1,
+    title: "Pasta Alfredo",
+    imageUrl: <PastaAlfredo width="100%" height="100%" />,
+  },
+];
+
+const getCategoryImage = (category) => {
+  const image = images.find((img) => img.title === category);
+  return image ? image.imageUrl : null;
+};
 
 const MenuComida = ({ addToCart }) => {
   const [platillo, setPlatillo] = useState([]);
@@ -38,7 +58,6 @@ const MenuComida = ({ addToCart }) => {
     fetchData();
   }, []);
 
-
   return (
     <Menu_Container>
       <NavBar />
@@ -46,7 +65,9 @@ const MenuComida = ({ addToCart }) => {
       {platillo.map((item) => (
         <ContainerCard key={item.id}>
           <ContainerMenu>
+            
             <Container_Nombre_Precio>
+            {getCategoryImage(item.nombre_platillo)}
               <Label_Nombre>{item.nombre_platillo}</Label_Nombre>
               <Label_Precio>{item.precio}</Label_Precio>
             </Container_Nombre_Precio>

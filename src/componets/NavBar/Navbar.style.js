@@ -24,3 +24,10 @@ export const Carrito = styled(Cart)`
   cursor: pointer;
   margin-right: 10px;
 `;
+
+export const ContainerLogo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
